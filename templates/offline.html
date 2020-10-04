@@ -1,0 +1,60 @@
+{% extends "doc.html" %}
+{% block title %}Home | Win Atoms!{% endblock %}
+{% block body %}
+
+<div class="main offline-main" id="main">
+  <h3>Install</h3>
+  <div>
+    To play offline, you can use the Python
+    <a href="https://github.com/buck54321/winatoms/tree/master/static">scripts available here</a>.
+    There are three scripts, 
+    <div class="cli-snippet">create.py</div>,
+    <div class="cli-snippet">play.py</div>, and
+    <div class="cli-snippet">verify.py</div>.
+    Like this website, the scripts rely on the Decred Python Toolkit, which
+    can be installed with
+    <div class="cli-snippet">pip install decred</div>.
+  </div>
+  <h3>Create</h3>
+  <div>
+    You can create a game with 
+    <div class="cli-snippet">python create.py</div> or 
+    <div class="cli-snippet">python create.py --testnet</div>.
+    The script will generate the <strong>game key</strong> and the <strong>contract address</strong>.
+    <strong>Do not lose the game key or forget your answer.</strong>
+    Both are required for redemption.
+  </div>
+  <h3>Play</h3>
+  <div>
+    The player must have a Decred address.
+    Create an address using 
+    <a href="https://github.com/decred/decrediton">Decrediton</a> or
+    <a href="https://github.com/decred/dcrwallet">dcrwallet</a>.
+    Or, if you're feeling adventurous, try out
+    <a href="https://github.com/decred/tinydecred">TinyWallet</a>, an
+    an in-development system tray wallet written in Python.
+  </div>
+  <div>
+    To play, run <div class="cli-snippet">python play.py</div>.
+    You will be prompted for the <strong>game key</strong> and your redemption address.
+    Then guess away.
+  </div>
+  <div>
+    The challenge of offline play is managing distribution of the
+    <strong>game key</strong> or otherwise allowing the user to get the
+    transaction signature(s) needed to redeem. The <strong>game key</strong> cannot be
+    publicized, since a malicious node or miner in posession of the <strong>game key</strong>
+    could attempt to steal the funds when the redemption is broadcast.
+  </div>
+  <h3 id="verifyAnchor">Verify</h3>
+  <div>
+    When you create a challenge on <span class="logo-font">Win Atoms!</span>,
+    you should independently verify the <strong>game key</strong> with the verification script.
+    <div class="cli-snippet">python verify.py &lt;paste-game-key-here&gt;</div>.
+    You will be prompted for your <strong>solution</strong>, which will be validated against the
+    <strong>game key</strong>. You'll then receive a failure or success message, along with some
+    basic data about the <strong>game key</strong>.
+  </div>
+</div>
+
+{% endblock %}

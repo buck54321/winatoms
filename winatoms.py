@@ -90,6 +90,10 @@ def challenge(chid):
 def how():
     return render_template('how.html')
 
+@app.route('/offline')
+def offline():
+    return render_template('offline.html')
+
 @app.route('/api/contract', methods=['POST'])
 def contract():
     d = request.form

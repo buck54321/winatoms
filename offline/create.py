@@ -1,28 +1,17 @@
 """
 Copyright (c) 2020, The Decred developers
 """
-import hashlib
 import sys
 
 from base58 import b58encode
 
 from decred.util.encode import ByteArray
-from decred.crypto import opcode
+from decred.crypto import crypto, opcode
 from decred.dcr import nets, txscript
 from decred.dcr.addrlib import AddressScriptHash
 from decred.crypto.secp256k1.curve import generateKey
 
-AddrIDs = {
-    nets.mainnet.Name: ByteArray("0786"),  # Dw
-    nets.testnet.Name: ByteArray("0fab"),  # Tw
-    nets.simnet.Name:  ByteArray("0f17"),  # Sw
-}
-
-NetBytes = {
-    nets.mainnet.Name: ByteArray(1),
-    nets.testnet.Name: ByteArray(2),
-    nets.simnet.Name:  ByteArray(3),
-}
+from util import hash256, scriptVersion
 
 # --mainnet flag must be specified to use mainnet.
 isTestNet = "--testnet" in sys.argv
@@ -30,15 +19,9 @@ isSimNet = "--simnet" in sys.argv
 net = nets.simnet if isSimNet else nets.testnet if isTestNet else nets.mainnet
 print(f"Using {net.Name}")
 
-def hash256(b):
-    return ByteArray(hashlib.sha256(bytes(b)).digest())
-
-def scriptVersion(netParams):
-    return AddrIDs[netParams.Name] + NetBytes[netParams.Name]
-
 # Get the answer from stdin. Strip whitespace from the ends, but nothing else,
 # i.e. input is not converted to lower-case.
-answer = input("What is the answer?\n").strip().encode("utf-8")
+answer = input("What is the solution?\n").strip().encode("utf-8")
 
 # The actual input needed to spend the transaction is the hash of the answer.
 answerHash = hash256(answer)
@@ -70,4 +53,4 @@ p2shAddr = AddressScriptHash.fromScript(redeemScript, net)
 # Print the address.
 print("Fund this challenge by sending Decred to", p2shAddr.string())
 print(f"The game key is {gameKeyEnc}")
-print("The solver will need the game key to claim the prize.")
+print("The redeemer will need the game key to claim the prize.")

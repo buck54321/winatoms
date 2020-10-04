@@ -711,13 +711,14 @@ div.flag-choices {
   background-color: #7772;
 }
 
-div.how-main .logo-font {
-  font-size: 0.8em;
+div.main .logo-font {
+  font-size: 0.85em;
 }
 
 div.how-main {
   font-size: 19px;
   line-height: 1.8;
+  padding-bottom: 200px;
 }
 
 div.how-main h2 {
@@ -741,3 +742,30 @@ div.how-main .contract-mono {
 div.how-main .bullets {
   font-size: 18px;
 }
+
+div.offline-main {
+  font-size: 19px;
+  line-height: 1.8;
+  padding-bottom: 200px;
+}
+
+div.offline-main .cli-snippet {
+  display: inline-block;
+  font-family: mono;
+  padding: 5px;
+  font-size: 16px;
+  background-color: #7773;
+  border-radius: 5px;
+  line-height: 1;
+}
+
+div.offline-main > div {
+  margin: 10px 0;
+}
+
+div.offline-main > h3 {
+  width: 100%;
+  margin: 15px 0 5px;
+  text-align: left;
+}
+

@@ -10,8 +10,7 @@
         A challenge is a blockchain <a href="#contractAnchor">contract</a> on Decred
       </li>
       <li>
-        <span class="logo-font">Win Atoms!</span> never collects the answer, even
-        during contract creation
+        <span class="logo-font">Win Atoms!</span> never collects the answer
       </li>
       <li>
         There are <a href="#securityAnchor">risks</a> you should know about
@@ -20,18 +19,18 @@
   </div>
   <div>
     <h2 id="contractAnchor">The Contract</h2>
-      A challenge is a contract that exists on the Decred blockchain.
-      You fund the contract when you pay to the challenge's address.
+      A <strong>challenge</strong> is a contract that exists on the Decred blockchain.
+      You fund the contract when you pay to the <strong>challenge</strong>'s address.
       To redeem the contract funds, the player must provide 2 things, the
       <strong>game key</strong> and the
       <strong>solution hash</strong>. 
       
       The <span class="bold">solution hash</span> is the SHA-256 hash of the UTF-8
-      encoded solution. The redeem script, which defines the contract, looks
+      encoded strong>solution</strong>. The redeem script, which defines the contract, looks
       like this.
 
       <div class="contract-mono">
-        SHA256 <32-bytes solution double-hash> EQUALVERIFY <32-bytes game key pubkey> CHECKSIG
+        SHA256 <32-bytes solution double-hash> EQUALVERIFY <32-bytes game pubkey> CHECKSIG
       </div>
 
       The redeemer must provide two inputs to the redeem script.
@@ -57,14 +56,24 @@
     <h2 id="securityAnchor">Security</h2>
       <p>
         The important cryptographic operations that secure the contract are
-        performed on your computer before submitting the challenge data. 
+        performed on your computer before submitting the <strong>challenge</strong> data. 
         The <strong>game key</strong>, however, is generated and stored by
-        <span class="logo-font">Win Atoms!</span> and the challenge creator.
+        <span class="logo-font">Win Atoms!</span> and the <strong>challenge</strong> creator.
         The details of the contract are encoded in the <strong>game key</strong>, but not the <strong>solution</strong>.
         The redeemer must have both the <strong>solution</strong> and the <strong>game key</strong>.
       </p>
       <p>
-        Obviously, the challenge creator can always solve their own challenge.
+        Obviously, the <strong>challenge</strong> creator can always solve their own <strong>challenge</strong>.
+      </p>
+      <p>
+        It is important to know that <strong>a malicious miner or node in 
+        posession of a game key could steal the funds.</strong> 
+        <span class="logo-font">Win Atoms!</span> never shares the game key with
+        anyone but the <strong>challenge</strong> creator. Even the redeemer is not given the
+        game key directly, just a signed transaction template that is locked to
+        their redemption address. This is possible because the <strong>solution-hash</strong> is
+        part of the transaction witness data, so not part of the input message
+        for the transaction signature.
       </p>
       <p>
         <span class="logo-font">Win Atoms!</span> never collects a <strong>solution</strong>.
@@ -81,8 +90,9 @@
         the up-and-up, our code is open-source, and you can see the important part right
         <a href="https://github.com/buck54321/winatoms/blob/232e39f1c11f8dd20c1aa2d35f550b4f0c3ec40a/challenges.py#L815-L819">here</a>,
         if you're curious. If that's not good enough, you should manually
-        verify your transaction by copy-pasting into <a href="https://explorer.dcrdata.org">dcrdata</a>, or
-        use <span class="mono fs16">dcrctl decoderawtransaction</span>, and then broadcasting.
+        inspect your transaction by copy-pasting into <a href="https://explorer.dcrdata.org">dcrdata</a>, or
+        use <span class="mono fs16">dcrctl decoderawtransaction</span>. You can
+        then broadcast using those tools.
       </p>
   </div>
 </div>
