@@ -1,8 +1,7 @@
 from base58 import b58encode
-from decred.util.encode import ByteArray
+from decred.crypto.rando import generateSeed, newHash
 from decred.dcr import addrlib, nets
-from decred.crypto.rando import newHash, generateSeed
-
+from decred.util.encode import ByteArray
 
 # if __name__ == "__main__":
 #  for i in range(256):

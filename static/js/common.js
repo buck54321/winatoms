@@ -281,7 +281,7 @@ async function requestJSON (method, addr, reqBody, headers) {
     req.headers = headers || new window.Headers({})
     const response = await window.fetch(addr, req)
     if (response.status !== 200) { throw response }
-    const body = await (await response.blob()).text()
+    const body = await response.text()
     var resp
     try {
       resp = JSON.parse(body)

@@ -5,15 +5,15 @@ import html
 import imghdr
 import json
 import os
-from pathlib import Path
 import time
 from collections import deque
+from pathlib import Path
 
 from decred.crypto.rando import newHash
+from decred.dcr.wire import msgtx
 from decred.util import helpers
 from decred.util.encode import ByteArray
-from decred.dcr.wire import msgtx
-from flask import Flask, jsonify, render_template, request, abort
+from flask import Flask, abort, jsonify, render_template, request
 
 from tcp import ConnectionPool
 
@@ -35,7 +35,7 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 users = {}
 backlog = deque(maxlen=10)
 
-pool = ConnectionPool("localhost", ChallengeServerPort)
+pool = ConnectionPool("/tmp/challenge.sock")
 
 def sendObj(conn, obj):
     send(conn, json.dumps(obj).encode("utf-8"))

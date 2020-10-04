@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 from queue import Queue
-from socketserver import BaseRequestHandler, TCPServer, ThreadingMixIn
+from socketserver import BaseRequestHandler, ThreadingMixIn, UnixStreamServer
 from typing import Any, Callable
 
 import psycopg2
@@ -313,10 +313,10 @@ class ClientHandler(BaseRequestHandler):
         finally:
             del self.socks[sockID]
 
-class ChallengeServer(ThreadingMixIn, TCPServer):
+class ChallengeServer(ThreadingMixIn, UnixStreamServer):
     def server_bind(self):
-        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.socket.bind(self.server_address)
+        # self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        super().server_bind()
         serverBound.set()
     
     def server_close(self, *a, **k):
@@ -357,7 +357,7 @@ class ChallengeManager:
         self.db(self.createTables_)
 
         ClientHandler.mgr = self
-        self.server = ChallengeServer(("", PORT), ClientHandler)
+        self.server = ChallengeServer("/tmp/challenge.sock", ClientHandler)
         self.serverThread = threading.Thread(None, self.server.serve_forever)
         self.serverThread.start()
         serverBound.wait()

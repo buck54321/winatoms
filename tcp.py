@@ -36,24 +36,14 @@ class AddrInfo:
         self.sockaddr = ai[4]
 
 
-def acceptableAddrInfo(ai):
-    return ai[0] in (socket.AF_INET, socket.AF_INET6) and ai[1] == socket.SOCK_STREAM
-
-
 class Connection:
 
-    def __init__(self, host, port):
+    def __init__(self, sockPath):
         """
         Args:
             addr (Addr): The remote address.
         """
-        addrInfos = socket.getaddrinfo(host, port)
-        if not addrInfos:
-            raise Exception(f"failed to resolve address info for {host}:{port}")
-        # We're only using the first one right now, but store them all anyway.
-        self.addrInfos = [AddrInfo(ai) for ai in addrInfos if acceptableAddrInfo(ai)]
-        if not self.addrInfos:
-            raise Exception(f"no acceptable address types for {host}:{port}")
+        self.sockPath = sockPath
         self.sendThread = None
         self.sendQ = Queue()
         self.closeEvent = threading.Event()
@@ -61,13 +51,10 @@ class Connection:
 
 
     def connect(self):
-        if not self.addrInfos:
-            raise Exception(f"cannot connect. no address info")
-        addr = self.addrInfos[0]
         if self.sock:
             self.close()
-        self.sock = socket.socket(addr.family, addr.type)
-        self.sock.connect(addr.sockaddr)
+        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        self.sock.connect(self.sockPath)
         self.sendThread = threading.Thread(None, sendLoop, args=(self.sock, self.sendQ, self.closeEvent))
         self.sendThread.start()
 

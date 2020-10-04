@@ -17,12 +17,30 @@ if "--simnet" in sys.argv:
     netParams = nets.simnet
 
 def runWSGI_http():
-    return subprocess.Popen(["uwsgi", "--socket=localhost:5000", "--master", 
-        "--wsgi=winatoms:app", "--python-autoreload=1", "--die-on-term"])
+    return subprocess.Popen([
+        "uwsgi",
+        "--master",
+        "--wsgi=winatoms:app",
+        "--socket=/tmp/winatoms.sock",
+        "--chmod-socket=666",
+        "--vacuum",
+        "--python-autoreload=1",
+        "--die-on-term"
+    ])
 
 def runWSGI_ws():
-    return subprocess.Popen(["uwsgi", "--http=localhost:5001", "--http-websockets", 
-        "--asyncio=100", "--greenlet",  "--master", "--wsgi=ws:app", "--die-on-term"])
+    return subprocess.Popen([
+        "uwsgi",
+        "--http-websockets",
+        "--asyncio=100",
+        "--greenlet",
+        "--master",
+        "--wsgi=ws:app",
+        "--socket=/tmp/ws.sock",
+        "--chmod-socket=666",
+        "--vacuum",
+        "--die-on-term"
+    ])
 
 if __name__ == "__main__":
     mgr = ChallengeManager(netParams)
