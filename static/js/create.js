@@ -289,8 +289,7 @@ function run () {
     page.keyAddr.textContent = gameData.address
   })
 
-  url = new URL(window.location)
-  ws = new MessageSocket(`ws://${url.host}/ws`, msg => {
+  ws = new MessageSocket(`ws`, msg => {
     if (gameData && msg.event === 'addr' && msg.addr === gameData.address) {
       page.liveFunds.textContent = msg.fmtVal
     }

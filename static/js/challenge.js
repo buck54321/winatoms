@@ -168,8 +168,7 @@ function run () {
     setProcessing(false)
   })
 
-  url = new URL(window.location)
-  ws = new MessageSocket(`ws://${url.host}/ws`, msg => {
+  ws = new MessageSocket('ws', msg => {
 
     console.log("--a.0")
 

@@ -120,8 +120,7 @@ async function run () {
     Doc.hide(page.loadingMo)
   })
 
-  url = new URL(window.location)
-  ws = new MessageSocket(`ws://${url.host}/ws`, msg => {
+  ws = new MessageSocket(`ws`, msg => {
     if (msg.event === 'addr') {
       const div = challengeDivs[msg.addr]
       if (!div) return

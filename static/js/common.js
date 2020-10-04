@@ -340,8 +340,10 @@ function checkResponse (resp, skipNote) {
 }
 
 class MessageSocket {
-  constructor (uri, recv, reconnect) {
-    this.uri = uri
+  constructor (path, recv, reconnect) {
+    const url = new URL(window.location)
+    const proto = url.protocol === 'https:' ? 'wss:' : 'ws:'
+    this.uri = `${proto}//${url.host}/${path}`
     this.recv = recv
     this.reconnect = reconnect
     this.ws = undefined

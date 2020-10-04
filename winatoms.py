@@ -15,6 +15,8 @@ from decred.util import helpers
 from decred.util.encode import ByteArray
 from flask import Flask, abort, jsonify, render_template, request
 
+from challenges import SockAddr
+
 from tcp import ConnectionPool
 
 MEDIA_ROOT = Path("./static")
@@ -35,7 +37,7 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 users = {}
 backlog = deque(maxlen=10)
 
-pool = ConnectionPool("/tmp/challenge.sock")
+pool = ConnectionPool(SockAddr)
 
 def sendObj(conn, obj):
     send(conn, json.dumps(obj).encode("utf-8"))

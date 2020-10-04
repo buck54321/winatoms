@@ -1,6 +1,7 @@
 import atexit
 import json
 import math
+import os
 import socket
 import sys
 import threading
@@ -35,6 +36,7 @@ MinDisplayFunding = 1e7 # 0.1 DCR of funding before display.
 # Standard network fee rate.
 feeRate = 10 # DCR / byte
 
+SockAddr = "/tmp/challenge.sock"
 
 _addrIDs = {
     nets.mainnet.Name: ByteArray("0786"),  # Dw
@@ -315,7 +317,7 @@ class ClientHandler(BaseRequestHandler):
 
 class ChallengeServer(ThreadingMixIn, UnixStreamServer):
     def server_bind(self):
-        # self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         super().server_bind()
         serverBound.set()
     
@@ -357,7 +359,8 @@ class ChallengeManager:
         self.db(self.createTables_)
 
         ClientHandler.mgr = self
-        self.server = ChallengeServer("/tmp/challenge.sock", ClientHandler)
+        os.unlink(SockAddr)
+        self.server = ChallengeServer(SockAddr, ClientHandler)
         self.serverThread = threading.Thread(None, self.server.serve_forever)
         self.serverThread.start()
         serverBound.wait()
