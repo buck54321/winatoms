@@ -1,0 +1,53 @@
+{% extends "doc.html" %}
+{% block title %}Home | Win Atoms!{% endblock %}
+{% block body %}
+
+<div class="main how-main" id="main">
+  <div>
+    <ul>
+      A challenge is <a href="#contractAnchor">a blockchain contract</a>.
+    </ul>
+    <ul>
+      <span class="logo-font">Win Atoms!</span> never collects the answer, but
+      there are <a href="securityAnchor">other risks you should know about.</a>
+    </ul>
+  </div>
+  <div>
+    <h2 id="contractAnchor">The Contract</h2>
+      A challenge is a contract that exists on the Decred blockchain.
+      The contract reads, in essence, 
+      "anyone posessing the game key and the solution can claim the funds".
+      You fund the contract when you pay to the challenge's address.
+  </div>
+  <div>
+    <h2 id="securityAnchor">Security</h2>
+      <p>
+        The important cryptographic operations that secure the contract are
+        performed on your computer before submitting the challenge data. 
+        The game key, however, is generated and stored by
+        <span class="logo-font">Win Atoms!</span>.
+        The details of the contract are encoded in the game key, but not the solution.
+        The redeemer must have both the solution and the game key, and 
+        <span class="logo-font">Win Atoms!</span> never collects a solution.
+      </p>
+      
+      <p>
+        When the challenge is solved, the winner is given a copy of the game key and a
+        pre-signed contract template from which a final contract can be assembled
+        in your browser. To gain access to the game key, the winner does not submit 
+        the actual solution, but just cryptographic proof that they know the solution.
+      </p>
+      <p>
+        If the user chooses to use the instant redeem feature to relay their
+        transaction, <span class="logo-font">Win Atoms!</span> does have access
+        to the solution and the game key simultaneously, so could, in theory,
+        steal the funds at that point. We won't.
+      </p>
+
+      <p>
+        Obviously, the challenge creator can always solve their own challenge.
+      </p>
+  </div>
+</div>
+
+{% endblock %}

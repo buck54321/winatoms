@@ -1,0 +1,38 @@
+{% extends "doc.html" %}
+{% block title %}Home | Win Atoms!{% endblock %}
+{% block body %}
+
+<div class="blocker d-hide" id="blocker">
+  <div class="modal d-hide" id="report">
+    <div>Would you like to report this challenge as inappropriate?</div>
+    <textarea class="w-100 input" maxlength="250" placeholder="optional comment, up to 250 characters" id="flagReason"></textarea>
+    <div class="flag-choices">
+      <button id="flagNo">Nevermind</button>
+      <button id="flagYes">Report</button>
+    </div>
+  </div>
+</div>
+
+<div class="main index-main" id="main">
+  <div id="challengeColumn">
+    <div class="challenge d-hide" id="challengeTmpl">
+      <div class="solved d-hide">solved</div>
+      <a class="challenge-header plainlink" data-tmpl="headerLink">
+        <span class="challenge-val"><span data-tmpl="val"></span> <span class="fs16">DCR</span><span class="mini-logo"></span></span>
+        <span class="challenge-addr" data-tmpl="addr"></span>
+      </a>
+      <div class="challenge-prompt" data-tmpl="prompt"></div>
+      <a class="img-wrapper plainlink d-hide" data-tmpl="imgWrap">
+        <img data-tmpl="img">
+      </a>
+      <div class="bottom-menu"><span data-tmpl="datetime"></span><span data-tmpl="flag" class="hoverbg pointer"><span class="ico-flag fs14"></span> report</span></div>
+    </div>
+  </div>
+  <div class="d-hide" id="loadingMo"><div class="d-inline-block ico-spinner spinner fs24"></div></div>
+  <div class="d-hide" id="noMo">No more challenges</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+{% endblock %}

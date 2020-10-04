@@ -1,0 +1,108 @@
+{% extends "doc.html" %}
+{% block title %}Challenge | Win Atoms!{% endblock %}
+{% block body %}
+
+<div class="blocker d-hide" id="blocker">
+  <div class="modal d-hide" id="winnerConfirmation">
+    <div class="waiter d-hide" id="winnerSpinner"><span class="ico-spinner spinner"></span></div>
+    <div class="w-100 text-center">
+      <h1>Right!</h1>
+    </div>
+    <p>
+      You've found the solution. Broadcast the redemption transaction to claim the prize.
+    </p>
+    <div class="modal-mono" id="txHex"></div>
+    <p>
+      The encoded transaction can be pasted into a block explorer like 
+      <a href="https://testnet.dcrdata.org/decodetx" class="subtlelink">dcrdata</a>,
+      where you can inspect and then broadcast.
+      You can also use your dcrd API if you're running a local node.
+    </p>
+    <p>
+      If you just want to claim the reward now, we can relay the redemption
+      for you.
+    </p>
+    <div class="w-100 text-center">
+        <button id="instantRedeem"><span class="logo-font">Win Atoms!</span> Redeem</button>
+        <div class="fs14 red d-hide" id="redeemErr"></div>
+    </div>
+  </div>
+
+  <div class="modal d-hide" id="unfundedMsg">
+    <div class="w-100 text-center">
+      <h1>Right!</h1>
+    </div>
+    <p>
+      You've found the solution, but this challenge is currently unfunded.
+    </p>
+    <div class="w-100 text-center">
+        <a href="/" class="input plainlink">View More Challenges</a>
+    </div>
+  </div>
+
+  <div class="modal d-hide" id="doneMsg">
+    You've broadcast your redemption. See it
+    <a id="redemptionLink" target="_blank">here</a>.
+    <div class="flex-row-between py-1">
+      <a class="bttnlink plainlink" href="/">See More Challenges</a>
+    </div>
+  </div>
+
+  <div class="modal d-hide" id="solvedMsg">
+    This challenge has just been solved by someone else.
+    <div class="w-100 text-center py-1">
+      <button id="keepTryingBttn">Keep Trying Anyway</button>
+      <a class="bttnlink plainlink" href="/">See More Challenges</a>
+    </div>
+  </div>
+    
+</div>
+
+<div class="main d-hide" id="addrBox">
+  <div class="w-100 text-left position-relative">
+    <h2>Enter your Decred address to play</h2>
+    <div class="position-relative">
+      <div class="submit-arrow ico-right-arrow hoverbg" id="addrSubmit"></div>
+      <input type="text" id="addr" placeholder="Your address">
+    </div>
+    <div class="red" id="addrErr"></div>
+  </div>
+</div>
+
+<div class="main challenge-main d-hide" id="main"
+  data-addr="{{ addr }}"
+  data-double-hash="{{ doubleHash }}"
+  data-nonce="{{ nonce }}"
+  data-funds="{{ funds }}"
+>
+  <div class="flex-row-between w-100">
+    <span class="challenge-val"><span id="challengeVal">{{ fmtVal }}</span> <span class="fs18">DCR</span><span class="mini-logo"></span></span>
+    <span class="challenge-addr mono">{{ addr }}</span>
+    
+  </div>  
+  
+  <p class="prompt">{{ prompt|safe }}<span class="prompt-label">prompt</span></p>
+  {% if imgPath %}
+    <div class="img-wrapper">
+      <img src="{{ url_for('static', filename='img/uu/') }}{{ imgPath }}"  class="challenge-img">
+    </div>
+  {% endif %}
+  <div class="fs14 red d-hide" id="solutionErr"></div>
+  <div class="w-100 position-relative">
+    <div class="submit-arrow ico-right-arrow hoverbg" id="solutionSubmit"></div>
+    <div class="submit-arrow ico-spinner spinner d-hide" id="solutionProcessing"></div>
+    <input type="text" id="solution" placeholder="your solution">
+  </div>
+  <div class="payment-address">
+    <span>Payment Address:</span>
+    <span id="redemptionAddr"></span>
+    <span class="ico-pencil hoverbg" id="editAddress"></span>
+  </div>
+    
+</div>
+
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bytes.js') }}"></script>
+<script src="{{ url_for('static', filename='js/challenge.js') }}"></script>
+
+{% endblock %}

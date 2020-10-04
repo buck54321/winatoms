@@ -1,0 +1,713 @@
+/* icons */
+@font-face {
+  font-family: 'icomoon';
+  src:
+    url('/static/fonts/icomoon.ttf?v=0') format('truetype'),
+    url('/static/fonts/icomoon.woff?v=0') format('woff'),
+    url('/static/fonts/icomoon.svg?v=0') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ico-"],
+[class*=" ico-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon', monospace !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-pencil::before {
+  content: "\e905";
+}
+
+.ico-eye-open::before {
+  content: "\e906";
+}
+
+.ico-eye-closed::before {
+  content: "\e907";
+}
+
+.ico-spinner::before {
+  content: "\e908";
+}
+
+.ico-save::before {
+  content: "\e909";
+}
+
+.ico-right-arrow::before {
+  content: "\e910";
+}
+
+.ico-flag::before {
+  content: "\e911";
+}
+
+.ico-twitter::before {
+  content: "\e912";
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+img {
+  margin: 0;
+}
+
+textarea,
+input,
+button,
+.input {
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid #7775;
+  border-radius: 3px;
+}
+
+button {
+  background-color: #7772;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover,
+.hoverbg:hover {
+  background-color: #7773;
+}
+
+a.bttnlink {
+  display: inline-block;
+  background-color: #7772;
+  padding: 5px 10px;
+  border: 1px solid #7775;
+  font-size: 14px;
+}
+
+.flex-row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.py-1 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 7px 10px;
+  font-size: 17px;
+  border: 1px solid #7775;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.grey {
+  color: #777;
+}
+
+.red {
+  color: #d55;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.d-hide,
+.d-none {
+  display: none !important;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.fs8 {
+  font-size: 8px;
+}
+
+.fs11 {
+  font-size: 11px;
+}
+
+.fs12 {
+  font-size: 12px;
+}
+
+.fs13 {
+  font-size: 13px;
+}
+
+.fs14 {
+  font-size: 14px;
+}
+
+.fs15 {
+  font-size: 15px;
+}
+
+.fs16 {
+  font-size: 16px;
+}
+
+.fs17 {
+  font-size: 17px;
+}
+
+.fs18 {
+  font-size: 18px;
+}
+
+.fs20 {
+  font-size: 20px;
+}
+
+.fs22 {
+  font-size: 22px;
+}
+
+.fs24 {
+  font-size: 24px;
+}
+
+.fs28 {
+  font-size: 28px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+a.header-logo {
+  display: block;
+  height: 30px;
+  width: 275px;
+  margin: 15px auto;
+  background: url('img/winatoms-logo.png');
+}
+
+.logo-font {
+  font-family: 'Bowlby One SC', cursive;
+}
+
+.spinner {
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+div.hr {
+  width: 100%;
+  border-top: 1px solid #7777;
+  margin: 0 1px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.primer {
+  max-width: 750px;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.primer h1 {
+    font-size: 24px;    
+}
+
+.play-main {      padding: 15px 0;
+}
+
+.play-main input.challenge-search {
+  padding: 4px 7px;
+  font-size: 14px;
+  width: 25em;
+  float: right;
+}
+
+.create-main h1 {
+  font-size: 28px;
+}
+
+.create-main h2 {
+  display: inline-block;
+  font-size: 18px;
+  margin: 20px 0 5px;
+}
+
+.main.create-main {
+  align-items: flex-start;
+}
+
+.create-main textarea.prompt {
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  width: 100%;
+  height: 75px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.create-main div.img-box {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-main div.img-box.focus {
+  border-color: #2a77;
+  border-width: 2px;
+  padding: 9px;
+}
+
+.create-main div.img-box button {
+  white-space: nowrap;
+}
+
+.create-main .echo-toggle {
+  width: 15px;
+  height: 15px;
+  font-size: 18px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+create-main input.solution {
+  padding-right: 50px;
+}
+
+.create-main button.solution-submit {
+  margin: 30px 0;
+  padding: 8px 16px;
+  font-size: 15px;
+}
+
+.create-main input.img-prompt {
+  border: none;
+  color: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+}
+
+.create-main #imgPreview {
+  display: block;
+  margin: 5px auto;
+  max-width: 85%;
+}
+
+.create-main .err-msg {
+  font-size: 15px;
+  color: #a44;
+  margin-left: 10px;
+}
+
+.create-main p.btw {
+  font-size: 16px;
+}
+
+.create-main p.btw span.logo-font {
+  font-size: 14px;
+}
+
+#keyAddr {
+  user-select: all;
+}
+
+div.modal {
+  padding: 25px;
+  border: 1px solid #777;
+  border-radius: 3px;
+  z-index: 101;
+  max-width: 500px;
+  background-color: white;
+  position: relative;
+}
+
+div.modal h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+div.blocker,
+div.modal > div.waiter {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.blocker {
+  position: fixed;
+  background-color: #000a;
+  overflow-y: auto;
+}
+
+div.modal > div.waiter {
+  position: absolute;
+  background-color: white;
+}
+
+div.modal > div.waiter > span {
+  font-size: 30px;
+}
+
+
+div.key-saver > div.key-bttns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+}
+
+div.key-saver > div.key-bttns > a {
+  display: inline-block;
+}
+
+div.key-saver > p {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+div.key-saver > div.key-done {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.modal-mono {
+  background-color: #7775;
+  padding: 10px;
+  border-radius: 3px;
+  overflow-wrap: break-word;
+  font-family: mono;
+  max-width: 300px;
+  margin: 10px auto 0;
+}
+
+div.key-funding {
+  border: 1px solid #7773;
+  border-radius: 4px;
+  position: relative;
+  padding: 8px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+div.key-funding > span.address-lbl {
+  display: block;
+  position: absolute;
+  background-color: white;
+  padding: 0 6px;
+  left: 4px;
+  top: -10px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.img-wrapper {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #222;
+}
+
+.img-wrapper img {
+  max-width: 100%;
+}
+
+div.challenge-main h1 {
+  font-size: 18px;
+}
+
+div.challenge-main p.prompt {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 20px;
+  border: 1px solid #7775;
+  border-radius: 3px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  min-width: 75px;
+  position: relative;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+div.challenge-main span.prompt-label {
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: 4px;
+  background-color: white;
+  padding: 0 4px;
+  font-size: 14px;
+}
+
+div.challenge-main .img-wrapper {
+  margin-bottom: 20px;
+}
+
+div.challenge-main .img-wrapper,
+div.challenge-main .img-wrapper img {
+  max-height: 350px;
+}
+
+div.challenge-main div.payment-address {
+  font-size: 14px;
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+div.challenge-main div.payment-address .ico-pencil {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+div.challenge-main div.payment-address > span {
+  margin-left: 5px;
+}
+
+div.submit-arrow {
+  position: absolute;
+  padding: 8px;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  font-size: 23px;
+  cursor: pointer;
+  color: #222;
+}
+
+div.challenge-main a.challenge-header {
+  display: block;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.challenge-main span.challenge-val {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.challenge-main span.challenge-val > span {
+  margin-left: 5px;
+}
+
+div.challenge-main span.challenge-addr {
+  color: #555;
+  font-size: 16px;
+}
+
+.mini-logo {
+  display: inline-block;
+  height: 15px;
+  width: 20px;
+  margin: 0 5px;
+  background: url('/static/img/dcr-logo-thick.png');
+  background-size: contain;
+}
+
+#addrBox div.red {
+  margin-top: 5px;
+}
+
+#solution.tried {
+  outline: 2px solid #aa4444;
+}
+
+#txHex {
+  max-width: 90%;
+  user-select: all;
+}
+
+a.plainlink,
+a.plainlink:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+div.index-main div.challenge {
+  display: block;
+  position: relative;
+  width: 500px;
+  border: 1px solid #7777;
+  margin: 20px auto;
+}
+
+div.index-main div.challenge div.solved {
+  position: absolute;  
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #777b;
+  letter-spacing: 0.1em;
+}
+
+div.index-main .img-wrapper,
+div.index-main .img-wrapper img {
+  max-height: 750px;
+}
+
+div.index-main div.challenge-prompt {
+  font-size: 18px;
+  padding: 10px;
+  white-space: pre-wrap;
+}
+
+div.index-main a.challenge-header {
+  padding: 5px 10px;
+  background-color: #7771;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.index-main span.challenge-val {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* div.index-main span.challenge-val > span {
+  margin-left: 5px;
+} */
+
+div.index-main span.challenge-val .mini-logo {
+  position: relative;
+  height: 14px;
+  top: 1px;
+}
+
+div.index-main span.challenge-addr {
+  height: 14px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+div.top-opts {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.top-opts > a {
+    display: inline-block;
+    padding: 10px;
+    /* background-color: #7771;
+    border: 1px solid #7777; */
+    border-radius: 3px;
+    font-size: 14px;
+    /* font-weight: bold; */
+}
+
+div.index-main div.challenge div.bottom-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 5px;
+    font-size: 15px;
+    background-color: #7771;
+}
+
+div.flag-choices {
+    width: 100%;
+    text-align: right;
+    padding-top: 15px;
+}
+
+#flagReason {
+    margin-top: 15px;
+    min-height: 4em;
+}
+
+#noMo,
+#loadingMo {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 10px 0;
+  background-color: #7772;
+}

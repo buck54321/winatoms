@@ -1,0 +1,81 @@
+{% extends "doc.html" %}
+{% block title %}Create a Challenge | Win Atoms!{% endblock %}
+{% block body %}
+
+<div class="blocker d-hide" id="keyBlocker">
+  <div class="modal key-saver" id="keySaver">
+    <div class="waiter" id="keyWaiting"><span class="ico-spinner spinner"></span></div>
+    <div class="key-funding" id="keyFunding">
+      <span class="address-lbl">Funding Address</span>
+      <span id="keyAddr"></span>
+    </div>
+    <p>
+      Send DCR to the funding address to fund the challenge.
+    </p>
+    <div class="key-bttns">
+      <button id="keyVizToggle"><span id="keyEye" class="ico-eye-open"></span> <span id="keyVizMsg">Show Game Key</span></button>
+      <button id="keySaveBttn"><span class="ico-save"></span> Save Game Key to File</button>
+    </div>
+    <div class="modal-mono d-hide" id="gameKey"></div>
+    <p>
+      The game key is required to <a href="/offline">play and redeem off-site.</a>
+      The game key does not encode the solution.
+      <span class="bold">You're the only one who knows the solution.</span>
+    </p>
+    <p>
+      After clicking "Done" below, you will no longer have access to the game key.
+    </p>
+    <p>
+      Don't forget to <a href="/verify">verify your game key</a>.
+    </p>
+    <div class="key-done">
+        <span><span id="liveFunds">0</span> <span class="fs18">DCR</span><span class="mini-logo"></span></span>
+        <button id="doneBttn">Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="main create-main" id="main">
+  <h1><span class="ico-pencil"></span> Create a Challenge</h1>
+  <div>
+    <h2>Prompt</h2>
+    <span class="err-msg" id="promptErr"></span>
+  </div>
+  <textarea id="prompt" type="text" class="prompt" placeholder="Present your challenge."></textarea>
+  <h2>Image <span class="fs13">(optional)</span></h2>
+  <div class="w-50">
+    <div class="img-box input" id="imgBox">
+      <div class="flex-grow-1">
+        <input id="imgPrompt" class="img-prompt" placeholder="select, drag and drop, paste">
+        <img id="imgPreview" class="d-hide">
+      </div>
+      <span id="fileSpinner" class="ico-spinner spinner fs20 d-hide"></span>
+      <button id="fileSelector" class="img-select">Select File</button>
+      <button id="fileRemover" class="img-select d-hide">Remove Image</button>
+      <input id="fileInput" type="file" class="d-hide">
+    </div>
+  </div>
+  <div>
+    <h2>Solution</h2>
+    <span class="err-msg" id="solutionErr"></span>
+  </div>
+  <div class="w-100 position-relative">
+    <input type="password" id="solution" autocomplete="off" readonly>
+    <div class="ico-eye-open echo-toggle" id="echoToggle"></div>
+  </div>
+  <div class="w-100 text-right">
+    <button class="solution-submit" id="submitSolution">Create</button>
+  </div>
+  <div class="hr"></div>
+  <p class="btw">
+      By the way, your solution is never sent to <span class="logo-font">Win Atoms!</span>
+      The hashing that secures the contract is performed in your browser.
+  </p>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bytes.js') }}"></script>
+<script src="{{ url_for('static', filename='js/create.js') }}"></script>
+
+{% endblock %}
