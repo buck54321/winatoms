@@ -28,7 +28,6 @@ FEED_CHANNEL = "winatoms-feed"
 
 log = helpers.getLogger("CHALLENGES")
 
-VERSION = ByteArray("1101") # 0x11 gives a W. encoding version is 0x01
 DummyHash = ByteArray("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef")
 
 MinDisplayFunding = 1e7 # 0.1 DCR of funding before display.
@@ -322,7 +321,7 @@ class ChallengeServer(ThreadingMixIn, UnixStreamServer):
         serverBound.set()
     
     def server_close(self, *a, **k):
-        for sockID, sock in ClientHandler.socks.items():
+        for sock in ClientHandler.socks.values():
             sock.close()
         super().server_close(*a, **k)
 

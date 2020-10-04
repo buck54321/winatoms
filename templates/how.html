@@ -3,49 +3,86 @@
 {% block body %}
 
 <div class="main how-main" id="main">
-  <div>
-    <ul>
-      A challenge is <a href="#contractAnchor">a blockchain contract</a>.
-    </ul>
-    <ul>
-      <span class="logo-font">Win Atoms!</span> never collects the answer, but
-      there are <a href="securityAnchor">other risks you should know about.</a>
+  <div class="w-100">
+    <h2>TL;DR</h2>
+    <ul class="bullets">
+      <li>
+        A challenge is a blockchain <a href="#contractAnchor">contract</a> on Decred
+      </li>
+      <li>
+        <span class="logo-font">Win Atoms!</span> never collects the answer, even
+        during contract creation
+      </li>
+      <li>
+        There are <a href="#securityAnchor">risks</a> you should know about
+      </li>
     </ul>
   </div>
   <div>
     <h2 id="contractAnchor">The Contract</h2>
       A challenge is a contract that exists on the Decred blockchain.
-      The contract reads, in essence, 
-      "anyone posessing the game key and the solution can claim the funds".
       You fund the contract when you pay to the challenge's address.
+      To redeem the contract funds, the player must provide 2 things, the
+      <strong>game key</strong> and the
+      <strong>solution hash</strong>. 
+      
+      The <span class="bold">solution hash</span> is the SHA-256 hash of the UTF-8
+      encoded solution. The redeem script, which defines the contract, looks
+      like this.
+
+      <div class="contract-mono">
+        SHA256 <32-bytes solution double-hash> EQUALVERIFY <32-bytes game key pubkey> CHECKSIG
+      </div>
+
+      The redeemer must provide two inputs to the redeem script.
+
+      <div class="contract-mono">
+        <32-bytes signature> <32-bytes solution hash>
+      </div>
+
+      The contract says, in essence
+      <ol>
+        <li>
+          Hash the redeemer-supplied <strong>solution hash</strong>, creating a <strong>double-hash</strong>
+        </li>
+        <li>
+          Check that the <strong>double-hash</strong> created in 1 matches the redeem script's <strong>contract double-hash</strong>
+        </li>
+        <li>
+          Verify that the <strong>signature</strong> provided is valid, proving access to the <strong>game key</strong>
+        </li>
+      </ol>
   </div>
   <div>
     <h2 id="securityAnchor">Security</h2>
       <p>
         The important cryptographic operations that secure the contract are
         performed on your computer before submitting the challenge data. 
-        The game key, however, is generated and stored by
-        <span class="logo-font">Win Atoms!</span>.
-        The details of the contract are encoded in the game key, but not the solution.
-        The redeemer must have both the solution and the game key, and 
-        <span class="logo-font">Win Atoms!</span> never collects a solution.
+        The <strong>game key</strong>, however, is generated and stored by
+        <span class="logo-font">Win Atoms!</span> and the challenge creator.
+        The details of the contract are encoded in the <strong>game key</strong>, but not the <strong>solution</strong>.
+        The redeemer must have both the <strong>solution</strong> and the <strong>game key</strong>.
       </p>
-      
-      <p>
-        When the challenge is solved, the winner is given a copy of the game key and a
-        pre-signed contract template from which a final contract can be assembled
-        in your browser. To gain access to the game key, the winner does not submit 
-        the actual solution, but just cryptographic proof that they know the solution.
-      </p>
-      <p>
-        If the user chooses to use the instant redeem feature to relay their
-        transaction, <span class="logo-font">Win Atoms!</span> does have access
-        to the solution and the game key simultaneously, so could, in theory,
-        steal the funds at that point. We won't.
-      </p>
-
       <p>
         Obviously, the challenge creator can always solve their own challenge.
+      </p>
+      <p>
+        <span class="logo-font">Win Atoms!</span> never collects a <strong>solution</strong>.
+        We use a cryptographic process to collect proof that the redeemer knows
+        the solution. Once the redeemer can prove that they know the <strong>solution</strong>,
+        <span class="logo-font">Win Atoms!</span> provides the redeemer with the
+        a <strong>transaction template</strong>, from which the final transaction can be assembled.
+      </p>
+      <p>
+        If the user chooses to use the <strong>instant redeem</strong> feature to relay their
+        transaction, <span class="logo-font">Win Atoms!</span> does have access
+        to the <strong>solution</strong> and the <strong>game key</strong> simultaneously, so could, in theory,
+        steal the solution at that point. While it's hard to completely prove that we're on
+        the up-and-up, our code is open-source, and you can see the important part right
+        <a href="https://github.com/buck54321/winatoms/blob/232e39f1c11f8dd20c1aa2d35f550b4f0c3ec40a/challenges.py#L815-L819">here</a>,
+        if you're curious. If that's not good enough, you should manually
+        verify your transaction by copy-pasting into <a href="https://explorer.dcrdata.org">dcrdata</a>, or
+        use <span class="mono fs16">dcrctl decoderawtransaction</span>, and then broadcasting.
       </p>
   </div>
 </div>
