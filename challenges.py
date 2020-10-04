@@ -636,7 +636,7 @@ class ChallengeManager:
             ch.imgPath,
         )
 
-        print("--subscribing", ch.addr)
+        log.debug(f"subscribing to address {ch.addr}")
         self.blockchain.subscribeAddresses([ch.addr], self.addrEvent)
         self.challenges[ch.addr] = ch
 

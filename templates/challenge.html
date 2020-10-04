@@ -58,23 +58,22 @@
     
 </div>
 
-<div class="main d-hide" id="addrBox">
-  <div class="w-100 text-left position-relative">
-    <h2>Enter your Decred address to play</h2>
-    <div class="position-relative">
-      <div class="submit-arrow ico-right-arrow hoverbg" id="addrSubmit"></div>
-      <input type="text" id="addr" placeholder="Your address">
-    </div>
-    <div class="red" id="addrErr"></div>
-  </div>
-</div>
-
-<div class="main challenge-main d-hide" id="main"
+<div class="main challenge-main" id="main"
   data-addr="{{ addr }}"
   data-double-hash="{{ doubleHash }}"
   data-nonce="{{ nonce }}"
   data-funds="{{ funds }}"
 >
+  <div class="blocker d-hide" id="addrBlocker">
+    <div class="addr-box">
+      <h3>Enter your Decred address to play</h3>
+      <div class="position-relative">
+        <div class="submit-arrow ico-right-arrow hoverbg" id="addrSubmit"></div>
+        <input type="text" id="addr" placeholder="Your address">
+      </div>
+      <div class="red" id="addrErr"></div>
+    </div>
+  </div>
   <div class="flex-row-between w-100">
     <span class="challenge-val"><span id="challengeVal">{{ fmtVal }}</span> <span class="fs18">DCR</span><span class="mini-logo"></span></span>
     <span class="challenge-addr mono">{{ addr }}</span>

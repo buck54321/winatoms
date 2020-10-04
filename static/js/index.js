@@ -66,8 +66,6 @@ async function run () {
       return
     }
 
-    console.log("--resp", resp)
-
     const challenges = resp.payload
     for (const ch of challenges) {
       const div = page.challengeTmpl.cloneNode(true)
@@ -127,7 +125,7 @@ async function run () {
       if (msg.funds === 0) {
         Doc.show(div.querySelector('.solved'))
       } else {
-          Doc.tmplElement(div, 'val').textContent = msg.fmtVal
+        Doc.tmplElement(div, 'val').textContent = msg.fmtVal
       }
     }
   })

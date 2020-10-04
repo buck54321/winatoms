@@ -12,18 +12,17 @@ function run () {
   const addr = main.dataset.addr
   var weSolved = false
   const page = Doc.parsePage(document, [
-    'solution', 'addrBox', 'addr', 'addrErr', 'redemptionAddr', 'editAddress',
-    'solutionSubmit', 'solutionProcessing', 'addrSubmit', 'winnerSpinner',
-    'winnerConfirmation', 'txHex', 'blocker', 'txHex', 'instantRedeem',
-    'backToPlay', 'unfundedMsg', 'solutionErr', 'redeemErr', 'redemptionLink',
-    'doneMsg', 'challengeVal', 'keepTryingBttn', 'solvedMsg'
+    'solution', 'addrBlocker', 'addr', 'addrErr', 'redemptionAddr',
+    'editAddress', 'solutionSubmit', 'solutionProcessing', 'addrSubmit',
+    'winnerSpinner', 'winnerConfirmation', 'txHex', 'blocker', 'txHex',
+    'instantRedeem', 'backToPlay', 'unfundedMsg', 'solutionErr', 'redeemErr',
+    'redemptionLink', 'doneMsg', 'challengeVal', 'keepTryingBttn', 'solvedMsg'
   ])
   var redemptionAddr = State.fetch('redemptionAddr')
   if (redemptionAddr) {
     page.redemptionAddr.textContent = redemptionAddr
-    Doc.show(main)
   } else {
-    Doc.show(page.addrBox)
+    Doc.show(page.addrBlocker)
   }
 
   const sumbitAddr = (e) => {
@@ -40,8 +39,7 @@ function run () {
     }
     page.redemptionAddr.textContent = redemptionAddr
     State.store('redemptionAddr', redemptionAddr)
-    Doc.show(main)
-    Doc.hide(page.addrBox)
+    Doc.hide(page.addrBlocker)
   }
     
   Doc.bind(page.addr, 'keyup', e => { 
@@ -53,8 +51,7 @@ function run () {
 
   Doc.bind(page.editAddress, 'click', e => {
     page.addr.value = redemptionAddr
-    Doc.show(page.addrBox)
-    Doc.hide(main)
+    Doc.show(page.addrBlocker)
   })
 
   setTriedBorder = t => {
@@ -87,8 +84,6 @@ function run () {
     const solution = encodeUTF8(solutionStr)
     const solutionHash = await sha256(solution)
     const h2 = await sha256(solutionHash)
-
-    console.log("--solution -> doubleHash", solutionStr, bytesToHex(h2), bytesToHex(doubleHash))
      
     if (!bytesAreEqual(h2, doubleHash)) {
       tried[solutionStr] = true
@@ -121,8 +116,6 @@ function run () {
     }
     const payload = resp.payload
 
-    console.log("--payload", payload)
-
     txHex = payload.txHex.replace(dummyHash, bytesToHex(solutionHash))
     page.txHex.textContent = txHex
     Doc.show(page.winnerConfirmation, page.blocker)
@@ -135,9 +128,6 @@ function run () {
     const resp = await postJSON('/api/relay', {
       "txHex": txHex
     })
-      
-
-    console.log("--resp", resp)
 
     if (!checkResponse(resp)) {
       weSolved = false
@@ -169,14 +159,8 @@ function run () {
   })
 
   ws = new MessageSocket('ws', msg => {
-
-    console.log("--a.0")
-
     if (msg.event === 'addr' && msg.addr === addr) {
       page.challengeVal.textContent = msg.fmtVal
-
-      console.log("--a.1", msg.funds === 0, !weSolved)
-
       if (msg.funds === 0 && !weSolved) {
         Doc.show(page.blocker, page.solvedMsg)
         Doc.hide(page.winnerConfirmation)

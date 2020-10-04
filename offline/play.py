@@ -111,9 +111,6 @@ while True:
         sigScript = txscript.addData(sig) + txscript.addData(answerHash) + txscript.addData(redeemScript)
         txIn.signatureScript = sigScript
 
-    # print("--maxSize", maxSize, "actualSize", rewardTx.serializeSize())
-    # exit()
-
     # Send the transaction, again using the dcrdata Insight API.
     api.tx.send.post({"rawtx": rewardTx.txHex()})
     print(round(netReward/1e8, 8), "\nDCR reward claimed. Transaction ID:", rewardTx.id())

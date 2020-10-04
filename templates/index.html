@@ -16,15 +16,17 @@
 <div class="main index-main" id="main">
   <div id="challengeColumn">
     <div class="challenge d-hide" id="challengeTmpl">
-      <div class="solved d-hide">solved</div>
       <a class="challenge-header plainlink" data-tmpl="headerLink">
         <span class="challenge-val"><span data-tmpl="val"></span> <span class="fs16">DCR</span><span class="mini-logo"></span></span>
         <span class="challenge-addr" data-tmpl="addr"></span>
       </a>
-      <div class="challenge-prompt" data-tmpl="prompt"></div>
-      <a class="img-wrapper plainlink d-hide" data-tmpl="imgWrap">
-        <img data-tmpl="img">
-      </a>
+      <div class="position-relative">
+        <div class="solved d-hide">solved</div>
+        <div class="challenge-prompt" data-tmpl="prompt"></div>
+        <a class="img-wrapper plainlink d-hide" data-tmpl="imgWrap">
+          <img data-tmpl="img">
+        </a>
+      </div>
       <div class="bottom-menu"><span data-tmpl="datetime"></span><span data-tmpl="flag" class="hoverbg pointer"><span class="ico-flag fs14"></span> report</span></div>
     </div>
   </div>

@@ -162,14 +162,21 @@ function run () {
   Doc.bind(page.imgBox, 'dragleave', e => { page.imgBox.classList.remove('focus') })
 
   Doc.bind(page.imgBox, 'drop', e => {
+
+    console.log("--dropped like it's hot")
+
     working(true)
     page.imgBox.classList.remove('focus')
     if (e.dataTransfer.files[0]) {
       processImg(e.dataTransfer.files[0])
       return
     }
-    if (e.dataTransfer.getData("url")) {
-      imgURL = e.dataTransfer.getData("url")
+
+    console.log("--a.0", e.dataTransfer)
+    const imgURL = e.dataTransfer.getData('url') || e.dataTransfer.getData('text/x-moz-url')
+    if (imgURL) {
+      const b = e.dataTransfer.items[1].getAsFile()
+      console.log("--a.2", b)
       img = new Image()
       img.setAttribute('crossorigin', 'anonymous')
       Doc.bind(img, 'load', e => {

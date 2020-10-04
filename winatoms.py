@@ -31,8 +31,8 @@ log = helpers.getLogger("WINATOMS")
 
 app = Flask(__name__)
 
-print("WARNING: Running with template auto-reload enabled. Disable this feature in production")
-app.config['TEMPLATES_AUTO_RELOAD'] = True
+# print("WARNING: Running with template auto-reload enabled. Disable this feature in production")
+# app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 users = {}
 backlog = deque(maxlen=10)
@@ -118,8 +118,6 @@ def contract():
         img.stream.seek(0, 2)
         size = img.stream.tell()
         img.stream.seek(0)
-        
-        print("--size", size)
 
         if size > MebiByte:
             return jsonify(apiError(f"img size, {size}, is greater than max allowed, {MebiByte} "))

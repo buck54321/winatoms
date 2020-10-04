@@ -60,6 +60,7 @@ body {
   font-family: 'Roboto', sans-serif;
   max-height: 100%;
   overflow-y: scroll;
+  color: #333;
 }
 
 img {
@@ -82,9 +83,18 @@ button {
   cursor: pointer;
 }
 
+textarea,
+input {
+  background-color: transparent;
+}
+
 button:hover,
 .hoverbg:hover {
   background-color: #7773;
+}
+
+::placeholder {
+  color: #777;
 }
 
 a.bttnlink {
@@ -253,6 +263,7 @@ div.hr {
 
 .main {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   max-width: 750px;
@@ -568,8 +579,29 @@ div.challenge-main span.challenge-val > span {
 }
 
 div.challenge-main span.challenge-addr {
-  color: #555;
+  color: #444;
   font-size: 16px;
+}
+
+div.challenge-main div.addr-box {
+  width: 90%;
+  padding: 50px 25px;
+  margin: 50px auto;
+  border: 1px solid #7777;
+  border-radius: 3px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+div.challenge-main div.addr-box h3 {
+  margin: 0 0 10px;
+}
+
+div.challenge-main div.blocker {
+  position: absolute;
+  z-index: 50;
+  background-color: #dddc;
+  display: block;
 }
 
 .mini-logo {
@@ -581,7 +613,7 @@ div.challenge-main span.challenge-addr {
   background-size: contain;
 }
 
-#addrBox div.red {
+#addrBlocker div.red {
   margin-top: 5px;
 }
 
@@ -621,7 +653,7 @@ div.index-main div.challenge div.solved {
   color: white;
   font-size: 24px;
   font-weight: bold;
-  background-color: #777b;
+  background-color: #000b;
   letter-spacing: 0.1em;
 }
 
@@ -678,7 +710,7 @@ div.top-opts > a {
     /* background-color: #7771;
     border: 1px solid #7777; */
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 15px;
     /* font-weight: bold; */
 }
 
@@ -704,7 +736,7 @@ div.flag-choices {
 
 #noMo,
 #loadingMo {
-  width: 100%;
+  width: 500px;
   text-align: center;
   padding: 10px 0;
   margin: 10px 0;
