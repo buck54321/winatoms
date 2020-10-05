@@ -10,14 +10,14 @@
         A <strong>challenge</strong> is a blockchain <a href="#contractAnchor">contract</a> on Decred
       </li>
       <li>
-        <span class="logo-font">Win Atoms!</span> never collects the answer
+        <span class="logo-font">Win Atoms!</span> never collects the solution
       </li>
       <li>
         There are <a href="#securityAnchor">risks</a> you should know about
       </li>
     </ul>
   </div>
-  <div>
+  <div class="w-100">
     <h2 id="contractAnchor">The Contract</h2>
       A <strong>challenge</strong> is a contract that exists on the Decred blockchain.
       You fund the contract when you pay to the <strong>challenge</strong>'s address.
@@ -26,11 +26,11 @@
       <strong>solution hash</strong>. 
       
       The <span class="bold">solution hash</span> is the SHA-256 hash of the UTF-8
-      encoded strong>solution</strong>. The redeem script, which defines the contract, looks
+      encoded <strong>solution</strong>. The redeem script, which defines the contract, looks
       like this.
 
       <div class="contract-mono">
-        SHA256 <32-bytes solution double-hash> EQUALVERIFY <32-bytes game pubkey> CHECKSIG
+        SHA256 &lt;32-bytes solution double-hash&gt; EQUALVERIFY &lt;32-bytes game pubkey&gt; CHECKSIG
       </div>
 
       The redeemer must provide two inputs to the redeem script.
@@ -52,7 +52,7 @@
         </li>
       </ol>
   </div>
-  <div>
+  <div class="w-100">
     <h2 id="securityAnchor">Security</h2>
       <p>
         The important cryptographic operations that secure the contract are

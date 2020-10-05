@@ -707,11 +707,9 @@ div.top-opts {
 div.top-opts > a {
     display: inline-block;
     padding: 10px;
-    /* background-color: #7771;
-    border: 1px solid #7777; */
     border-radius: 3px;
     font-size: 15px;
-    /* font-weight: bold; */
+    text-align: center;
 }
 
 div.index-main div.challenge div.bottom-menu {
@@ -801,3 +799,16 @@ div.offline-main > h3 {
   text-align: left;
 }
 
+@media only screen and (max-width: 550px) {
+  div.index-main div.challenge {
+    max-width: 95%;
+  }
+
+  div.challenge-main span.challenge-val {
+    font-size: 22px;
+  }
+
+  div.challenge-main span.challenge-addr {
+    font-size: 14px;
+  }
+}
