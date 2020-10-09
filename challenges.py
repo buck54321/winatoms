@@ -265,7 +265,7 @@ class Challenge:
             if f.redemption:
                 continue
             txTime = f.txTime if f.txTime else time.time()
-            secondsSince = txTime - time.time()
+            secondsSince = time.time() - txTime
             score += f.value * math.exp(-secondsSince*decayFactor)
         self.score = score
         return score

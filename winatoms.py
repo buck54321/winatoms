@@ -31,8 +31,10 @@ log = helpers.getLogger("WINATOMS")
 
 app = Flask(__name__)
 
-# print("WARNING: Running with template auto-reload enabled. Disable this feature in production")
-# app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+if "WINATOMS_RELOAD_TEMPLATES" in os.environ:
+    print("WARNING: Running with template auto-reload enabled. Disable this feature in production")
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 users = {}
 backlog = deque(maxlen=10)
